@@ -1,0 +1,22 @@
+{
+  "name": "quick-hmac",
+  "version": "1.0.0",
+  "main": "hmac.js",
+  "license": "MIT",
+  "keywords": [
+    "hmac",
+    "crypto",
+    "cryptography",
+    "async",
+    "sync",
+    "promise"
+  ],
+  "author": {
+    "name": "MiguelEXE",
+    "url": "https://github.com/MiguelEXE"
+  },
+  "homepage": "https://github.com/MiguelEXE/quick-hash",
+  "bugs": {
+    "url": "https://github.com/MiguelEXE/quick-hash/issues"
+  }
+}
