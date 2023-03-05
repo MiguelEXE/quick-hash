@@ -43,9 +43,9 @@ function bufferXor(buf1, buf2){
 /**
  * Computes the blockSized (k') of the key (k)
  * @param {Buffer} key Key buffer
- * @param {(key: Buffer) => Buffer} hash Hash function (not async function)
+ * @param {(content: Buffer) => Buffer} hash Hash function (not async function)
  * @param {number} blockSize Blocksize of the hash function (e.g 64 bytes for SHA-1)
- * @returns {Buffer} blocksized key
+ * @returns {Buffer} Blocksized key
  */
 function computeBlockSizedKey(key, hash, blockSize){
     if(key.length > blockSize){
@@ -57,12 +57,12 @@ function computeBlockSizedKey(key, hash, blockSize){
     return key;
 }
 /**
- * Make a HMAC with message and key
+ * Generates a HMAC digest with message and key (synchronous version)
  * @param {Buffer} message Message buffer
  * @param {Buffer} key Key buffer 
- * @param {(key: Buffer) => Buffer} hash Hash function (not async function)
- * @param {number} blockSize Blocksize of the hash function (e.G 64 bytes for SHA-1)
- * @returns {Buffer} the hmac message
+ * @param {(content: Buffer) => Buffer} hash Hash function (not async function)
+ * @param {number} blockSize Blocksize of the hash function (e.g 64 bytes for SHA-1)
+ * @returns {Buffer} The HMAC message
  */
 function hmacSync(message, key, hash, blockSize){
     let blockSizedKey = computeBlockSizedKey(key, hash, blockSize);
@@ -79,9 +79,9 @@ function hmacSync(message, key, hash, blockSize){
 /**
  * Computes the blockSized (k') of the key (k)
  * @param {Buffer} key Key buffer
- * @param {(key: Buffer) => Promise<Buffer>} hash Hash function (async function)
+ * @param {(content: Buffer) => Promise<Buffer>} hash Hash function (async function)
  * @param {number} blockSize Blocksize of the hash function (e.g 64 bytes for SHA-1)
- * @returns {Promise<Buffer>} blocksized key
+ * @returns {Promise<Buffer>} Blocksized key
  */
 async function computeBlockSizedKeyAsync(key, hash, blockSize){
     if(key.length > blockSize){
@@ -93,12 +93,12 @@ async function computeBlockSizedKeyAsync(key, hash, blockSize){
     return key;
 }
 /**
- * Make a HMAC with message and key
+ * Generates a HMAC digest with message and key (asynchronous version)
  * @param {Buffer} message Message buffer
  * @param {Buffer} key Key buffer 
- * @param {(key: Buffer) => Promise<Buffer>} hash Hash function (async function)
- * @param {number} blockSize Blocksize of the hash function (e.G 64 bytes for SHA-1)
- * @returns {Promise<Buffer>} the hmac message
+ * @param {(content: Buffer) => Promise<Buffer>} hash Hash function (async function)
+ * @param {number} blockSize Blocksize of the hash function (e.g 64 bytes for SHA-1)
+ * @returns {Promise<Buffer>} The HMAC message
  */
 async function hmac(message, key, hash, blockSize){
     let blockSizedKey = await computeBlockSizedKeyAsync(key, hash, blockSize);

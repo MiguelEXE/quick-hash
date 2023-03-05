@@ -1,6 +1,7 @@
 {
   "name": "quick-hmac",
-  "version": "1.0.0",
+  "description": "A simple module that generates HMAC digest",
+  "version": "1.0.1",
   "main": "hmac.js",
   "license": "MIT",
   "keywords": [
