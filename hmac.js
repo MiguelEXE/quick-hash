@@ -21,7 +21,7 @@ function allocFill(length, value){
     return Buffer.alloc(length).fill(value);
 }
 /**
- * Creates a buffer with `Math.max(buf1.byteLength, buf2.byteLength)` length and does xor with buf1 and buf2 contents
+ * Creates a buffer with `Math.max(buf1.byteLength, buf2.byteLength)` length and does a xor operation with buf1 and buf2 contents
  * @param {Buffer} buf1 Buffer 1
  * @param {Buffer} buf2 Buffer 2
  * @returns {Buffer} New buffer with (buf1 ^ buf2)
@@ -43,7 +43,7 @@ function bufferXor(buf1, buf2){
 /**
  * Computes the blockSized (k') of the key (k)
  * @param {Buffer} key Key buffer
- * @param {(content: Buffer) => Buffer} hash Hash function (not async function)
+ * @param {(content: Buffer) => Buffer} hash Hash function (sync function)
  * @param {number} blockSize Blocksize of the hash function (e.g 64 bytes for SHA-1)
  * @returns {Buffer} Blocksized key
  */
@@ -60,7 +60,7 @@ function computeBlockSizedKey(key, hash, blockSize){
  * Generates a HMAC digest with message and key (synchronous version)
  * @param {Buffer} message Message buffer
  * @param {Buffer} key Key buffer 
- * @param {(content: Buffer) => Buffer} hash Hash function (not async function)
+ * @param {(content: Buffer) => Buffer} hash Hash function (sync function)
  * @param {number} blockSize Blocksize of the hash function (e.g 64 bytes for SHA-1)
  * @returns {Buffer} The HMAC message
  */
@@ -93,7 +93,7 @@ async function computeBlockSizedKeyAsync(key, hash, blockSize){
     return key;
 }
 /**
- * Generates a HMAC digest with message and key (asynchronous version)
+ * Generates a HMAC digest with message and key (asynchronous/promise version)
  * @param {Buffer} message Message buffer
  * @param {Buffer} key Key buffer 
  * @param {(content: Buffer) => Promise<Buffer>} hash Hash function (async function)
